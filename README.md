@@ -2,13 +2,4 @@
 Reposite of our projects using Docker and Docker Compose
 
 /etc/docker$ tree
-.
-├── alertmanager
-│   └── config.yml
-├── docker-compose.yml
-└── prometheus
-    ├── alert_rules.yml
-    ├── prometheus.crt
-    ├── prometheus.key
-    ├── prometheus.yml
-    └── web-config.yml
+![image](https://github.com/user-attachments/assets/bc00048a-0a29-48d3-ac04-cf150b1fcceb)
