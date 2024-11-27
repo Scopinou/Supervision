@@ -1,0 +1,71 @@
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus           # Prometheus config
+      - prometheus_data:/prometheus            # Prometheus data
+      - ./prometheus/prometheus.crt:/etc/prometheus/prometheus.crt
+      - ./prometheus/prometheus.key:/etc/prometheus/prometheus.key
+    ports:
+      - "9090:9090"
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--web.config.file=/etc/prometheus/web-config.yml"
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    volumes:
+      - grafana_data:/var/lib/grafana          # Grafana data
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SECURITY_ADMIN_USER=admin
+    depends_on:
+      - prometheus
+    networks:
+      - monitoring
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    ports:
+      - "9100:9100"
+    networks:
+      - monitoring
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: alertmanager
+    volumes:
+      - ./alertmanager:/etc/alertmanager       # Alertmanager config
+    ports:
+      - "9093:9093"
+    command:
+      - "--config.file=/etc/alertmanager/config.yml"
+    networks:
+      - monitoring
+
+  snmp-exporter:
+    image: prom/snmp-exporter:latest
+    container_name: snmp-exporter
+    volumes:
+      - ./snmp-exporter:/etc/snmp-exporter     # SNMP Exporter config
+    ports:
+      - "9116:9116"                            # Default SNMP Exporter port
+    command:
+      - "--config.file=/etc/snmp-exporter/snmp.yml"
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    driver: bridge
+
+volumes:
+  prometheus_data:
+  grafana_data:
