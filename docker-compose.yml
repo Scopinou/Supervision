@@ -50,6 +50,18 @@ services:
     networks:
       - monitoring
 
+  snmp-exporter:
+    image: prom/snmp-exporter:latest
+    container_name: snmp-exporter
+    volumes:
+      - ./snmp-exporter:/etc/snmp-exporter     # SNMP Exporter config
+    ports:
+      - "9116:9116"                            # Default SNMP Exporter port
+    command:
+      - "--config.file=/etc/snmp-exporter/snmp.yml"
+    networks:
+      - monitoring
+
 networks:
   monitoring:
     driver: bridge

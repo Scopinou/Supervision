@@ -15,6 +15,22 @@ scrape_configs:
     static_configs:
       - targets: ['FQDN:9182', 'FQDN:9182']
 
+scrape_configs:
+  - job_name: 'snmp'
+    static_configs:
+      - targets:
+          - 192.168.1.1      # Adresse IP de l'équipement SNMP
+    metrics_path: /snmp
+    params:
+      module: [default]       # Utilise le module "default" défini dans snmp.yml
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: snmp-exporter:9116  # Adresse du SNMP Exporter
+
 alerting:
   alertmanagers:
     - static_configs:
@@ -23,3 +39,4 @@ alerting:
 
 rule_files:
   - "alert_rules.yml"
+
