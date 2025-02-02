@@ -1,7 +1,7 @@
 # Supervision
 Ce repos GitHub rassemble toute la partie correction du scénario du FYC.
 
-![image](https://github.com/user-attachments/assets/bc00048a-0a29-48d3-ac04-cf150b1fcceb)
+![image](https://github.com/user-attachments/assets/e6887e20-8164-40dc-9c49-52240ff980c0)
 
 Il y a certaines valeurs qu'il faut remplacer manuellement dans les fichiers suivants (Les détails des changements sont illustrés dans notre scénario FYC) :
 
