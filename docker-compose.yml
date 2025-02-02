@@ -62,6 +62,16 @@ services:
     networks:
       - monitoring
 
+  victoriametrics:
+    image: victoriametrics/victoria-metrics:latest
+    container_name: victoriametrics
+    ports:
+      - "8428:8428" # Port d'accès HTTP
+    volumes:
+      - ./victoriametrics:/victoria-metrics-data # Pour la persistance des données
+    networks:
+      - monitoring
+
 networks:
   monitoring:
     driver: bridge
