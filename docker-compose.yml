@@ -63,7 +63,7 @@ services:
       - monitoring
 
   victoriametrics:
-    image: victoriametrics/victoria-metrics:latest
+    image: victoriametrics/victoria-metrics:v1.97.0
     container_name: victoriametrics
     ports:
       - "8428:8428" # Port d'accès HTTP
