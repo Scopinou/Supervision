@@ -5,8 +5,8 @@ services:
     volumes:
       - ./prometheus:/etc/prometheus           # Prometheus config
       - prometheus_data:/prometheus            # Prometheus data
-      - ./prometheus/prometheus.crt:/etc/prometheus/prometheus.crt
-      - ./prometheus/prometheus.key:/etc/prometheus/prometheus.key
+      - ./certs/monitoring.crt:/etc/prometheus/monitoring.crt
+      - ./certs/monitoring.key:/etc/prometheus/monitoring.key
     ports:
       - "9090:9090"
     command:
