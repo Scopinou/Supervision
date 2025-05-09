@@ -5,8 +5,8 @@ services:
     volumes:
       - ./prometheus:/etc/prometheus           # Prometheus config
       - prometheus_data:/prometheus            # Prometheus data
-      - ./certs/monitoring.crt:/etc/prometheus/monitoring.crt
-      - ./certs/monitoring.key:/etc/prometheus/monitoring.key
+      - ./certs/monitoring.crt:/etc/prometheus/monitoring.crt:ro
+      - ./certs/monitoring.key:/etc/prometheus/monitoring.key:ro
     ports:
       - "9090:9090"
     command:
@@ -20,6 +20,9 @@ services:
     container_name: grafana
     volumes:
       - grafana_data:/var/lib/grafana          # Grafana data
+      - ./certs/monitoring.crt:/etc/grafana/monitoring.crt:ro
+      - ./certs/monitoring.key:/etc/grafana/monitoring.key:ro
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini:ro
     ports:
       - "3000:3000"
     environment:
