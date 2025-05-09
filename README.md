@@ -14,8 +14,9 @@ sudo openssl req -new -newkey rsa:2048 -days 365 -nodes -x509 \
 ```
 
 Pour modifier les permissions afin que l'utilisateur root dans le conteneur, puisse lire la clé, sinon, il y aura une erreur de permission dans les logs :
-sudo chmod 644 prometheus/prometheus.key
-
+```
+sudo chmod 600 certs/monitoring.key
+```
 
 Il y a certaines valeurs qu'il faut remplacer manuellement dans les fichiers suivants (Les détails des changements sont illustrés dans notre scénario FYC) :
 
