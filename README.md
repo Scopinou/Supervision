@@ -6,7 +6,12 @@ Ce repos GitHub rassemble toute la partie correction du scénario du FYC.
 Afin de pouvoir utiliser ce repo, il faut générer des certificats pour la sécurisation de la page WEB de Prometheus. Pour cela, nous allons taper ces commandes :
 
 Pour générer la key et le crt :
-sudo openssl req -new -newkey rsa:2048 -days 365 -nodes -x509 -keyout prometheus/prometheus.key -out prometheus/prometheus.crt
+```
+sudo openssl req -new -newkey rsa:2048 -days 365 -nodes -x509 \
+-keyout certs/monitoring.key \
+-out certs/monitoring.crt \
+-subj "/C=FR/ST=France/L=Paris/O=ESGI/OU=IT/CN=FRPONSUPERVISION-01"
+```
 
 Pour modifier les permissions afin que l'utilisateur root dans le conteneur, puisse lire la clé, sinon, il y aura une erreur de permission dans les logs :
 sudo chmod 644 prometheus/prometheus.key
