@@ -68,8 +68,8 @@ services:
   victoriametrics:
     image: victoriametrics/victoria-metrics:v1.97.0
     container_name: victoriametrics
-    ports:
-      - "8428:8428" # Port d'accès HTTP
+#    ports:
+#      - "8428:8428" # Port d'accès HTTP
     volumes:
       - ./victoriametrics:/victoria-metrics-data # Pour la persistance des données
     networks:
