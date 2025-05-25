@@ -2,6 +2,7 @@ services:
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
+    restart: unless-stopped
     volumes:
       - ./prometheus:/etc/prometheus           # Prometheus config
       - prometheus_data:/prometheus            # Prometheus data
@@ -18,6 +19,7 @@ services:
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
+    restart: unless-stopped
     volumes:
       - grafana_data:/var/lib/grafana          # Grafana data
       - ./certs/monitoring.crt:/etc/grafana/monitoring.crt:ro
@@ -54,6 +56,7 @@ services:
   alertmanager:
     image: prom/alertmanager:latest
     container_name: alertmanager
+    restart: unless-stopped
     volumes:
       - ./alertmanager:/etc/alertmanager       # Alertmanager config
 #    ports:
@@ -66,6 +69,7 @@ services:
   snmp-exporter:
     image: prom/snmp-exporter:latest
     container_name: snmp-exporter
+    restart: unless-stopped
     volumes:
       - ./snmp-exporter:/etc/snmp-exporter     # SNMP Exporter config
     ports:
@@ -78,6 +82,7 @@ services:
   victoriametrics:
     image: victoriametrics/victoria-metrics:v1.97.0
     container_name: victoriametrics
+    restart: unless-stopped
 #    ports:
 #      - "8428:8428" # Port d'accès HTTP
     volumes:
