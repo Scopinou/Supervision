@@ -2,7 +2,8 @@ global:
   smtp_smarthost: 'smtp.gmail.com:587'
   smtp_from: 'email@email.com'
   smtp_auth_username: 'email@email.com'
-  smtp_auth_password: 'password'
+  #smtp_auth_password: 'password'
+  smtp_auth_password_file: /run/secrets/smtp_password
   smtp_require_tls: true
 
 route:
